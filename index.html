@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html manifest="" lang="en-US">
+	
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"  content="width=device-width, height=device-height, initial-scale=0.8, user-scalable=1" />
+    <title>GS</title>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    
+    	
+	function PictureSourceType() {};
+	PictureSourceType.PHOTO_LIBRARY = 0;
+	PictureSourceType.CAMERA = 1;
+	 
+	function getPicture(sourceType)
+	{
+	     var options = { quality: 10,destinationType: Camera.DestinationType.FILE_URI };
+	     if (sourceType != undefined) {
+	          options["sourceType"] = sourceType;
+	     }
+	     // if no sourceType specified, the default is CAMERA 
+	     navigator.camera.getPicture(getPicture_Success, onFail, options);
+	};
+	
+	 
+	function getPicture_Success(imageURI)
+	{
+	        alert("getpic success");
+	        document.getElementById("test_img").src = imageURI;
+	}
+	
+
+	function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+
+    </script>
+
+</head>
+<body>
+	
+	
+		
+		<!--<div id="areaCetak" style="width: 100%; padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 0px; margin-top: 0; margin-left:0;  
+        width:869px ; height: 287px; position:absolute">
+             <div style="margin-top:-280px; left: -95px; border:1px solid #000; position:absolute;">
+                <div style="position:absolute ; white-space: nowrap; left: 230px; top: 356px">
+                    <input id="LbNopol" type="text" value="NOMOR REGISTRASI" onfocus="nextfield='LbNmPemilik'; prevfield='edCari'" style="width: 150px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 372px">
+                    <input id="LbNmPemilik"  type="text" value="NAMA PEMILIK" onfocus="nextfield='LbAlamatPemilik1'; prevfield='LbNopol'" style="width: 150px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 388px">
+                    <input id="LbAlamatPemilik1" type="text" value="ALAMAT1" onfocus="nextfield='LbAlamatPemilik2'; prevfield='LbNmPemilik'" style="width: 350px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 404px">
+                    <input id="LbAlamatPemilik2" type="text" value="ALAMAT2" onfocus="nextfield='LbAlamatPemilik3'; prevfield='LbAlamatPemilik1'" style="width: 200px;height:12px" />
+                </div>
+                <div style="left: 435px; white-space: nowrap; position: absolute; top: 404px">
+                    <input id="LbAlamatPemilik3" type="text" value="ALAMAT2" onfocus="nextfield='LbMerkKendaraan'; prevfield='LbAlamatPemilik2'" style="width: 150px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 420px">
+                    <input id="LbMerkKendaraan" type="text" value="MERK" onfocus="nextfield='LbTypeKendaraan'; prevfield='LbAlamatPemilik3'" style="width: 150px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 436px">
+                    <input id="LbTypeKendaraan" type="text" value="TYPE" onfocus="nextfield='LbJenisKendaraan'; prevfield='LbMerkKendaraan'"  style="width: 150px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 452px">
+                    <input id="LbJenisKendaraan" type="text" value="JENIS" onfocus="nextfield='LbModelKendaraan'; prevfield='LbTypeKendaraan'" style="width: 150px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 469px">
+                    <input id="LbModelKendaraan" type="text" value="MODEL" onfocus="nextfield='LbThBuat'; prevfield='LbJenisKendaraan'" style="width: 150px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 486px">
+                    <input id="LbThBuat" type="text" value="TAHUN BUAT" onfocus="nextfield='LbBesarCC'; prevfield='LbModelKendaraan'" style="width: 100px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 504px">
+                    <input id="LbBesarCC" type="text" value="BESAR CC" onfocus="nextfield='LbNoRangka'; prevfield='LbThBuat'" style="width: 150px;height:12px" />
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 521px">
+                    <input id="LbNoRangka" type="text" value="NOMOR RANGKA" onfocus="nextfield='LbNoMesin'; prevfield='LbBesarCC'" style="width: 150px;height:12px" />                    
+                </div>
+                <div style="left: 230px; white-space: nowrap; position: absolute; top: 538px">
+                    <input id="LbNoMesin" type="text" value="NOMOR MESIN" onfocus="nextfield='LbWarnaKendaraan'; prevfield='LbNoRangka'" readonly="readonly" style="width: 150px;height:12px" />
+                </div>
+                
+                <!-- right panel -->
+            <!--    <div style="left: 523px; white-space: nowrap; position: absolute; top: 420px">
+                    <input id="LbWarnaKendaraan" type="text" value="WARNA" onfocus="nextfield='LbBBM'; prevfield='LbNoMesin'"  style="width: 120px;height:12px" />
+                </div>
+                <div style="left: 523px; white-space: nowrap; position: absolute; top: 436px">
+                    <input id="LbBBM" type="text" value="BAHAN BAKAR" onfocus="nextfield='LbPlat'; prevfield='LbWarnaKendaraan'" style="width: 120px;height:12px" />
+                </div>
+                <div style="left: 523px; white-space: nowrap; position: absolute; top: 452px">
+                    <input id="LbPlat" type="text" value="WARNA TNKB" onfocus="nextfield='LbThRegistrasi'; prevfield='LbBBM'" style="width: 120px;height:12px" />
+                </div>
+                <div style="left: 523px; white-space: nowrap; position: absolute; top: 469px">
+                    <input id="LbThRegistrasi" type="text" onfocus="nextfield='LbNoBPKB'; prevfield='LbPlat'"  value="TAHUN REGISTRASI"  style="width: 120px;height:12px" />
+                </div>
+                <div style="left: 523px; white-space: nowrap; position: absolute; top: 485px">
+                    <input id="LbNoBPKB" type="text" onfocus="nextfield='LbTgMSSTNK'; prevfield='LbThRegistrasi'" value="NOMOR BPKB" style="width: 120px;height:12px"/>
+                </div>
+                <div style="left: 536px; white-space: nowrap; position: absolute; top: 530px">
+                    <input id="LbTgMSSTNK" type="text" onfocus="nextfield='daftar'; prevfield='LbNoBPKB'" value="MASA STNK"  style="width: 80px;height:12px" />                
+                </div>    
+                <div style="left: 536px; white-space: nowrap; position: absolute; top: 530px ;visibility:hidden ">
+                    <input id="edBarcode" type="text" value="BARCODE" style="width: 140px;height:12px"  />                    
+                </div>                
+                <div style="left: 559px; white-space: nowrap; position: absolute; top: 330px">
+                    <span id="LbTgDaftar" class="editable">TANGGAL DAFTAR STNK</span>                    
+                </div>
+                <div style="left: 562px; white-space: nowrap; position: absolute; top: 348px">
+                    <span id="LbKdSTNK" class="editable">JENIS STNK</span>                    
+                </div>
+                <div style="left: 725px; white-space: nowrap; position: absolute; top: 289px">
+                    <span id="LbTgCetak" class="editable">TANGGAL CETAK STNK</span>
+                </div>
+                
+        
+                
+                
+            </div>
+		</div> -->
+		
+			
+	<!--		<button onclick="capturePhoto();">Capture Photo</button> <br>
+		    <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+		    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+		    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+		    <img style="display:block;width:60px;height:60px;" id="smallImage" src="" />
+		    <img style="display:block;" id="largeImage" src="" />
+-->
+<img style="width:60px;height:60px" id="test_img" src="" /> 
+<button onclick="getPicture()">From Camera</button>
+<button onclick="getPicture(PictureSourceType.PHOTO_LIBRARY)">From Photo Library</button>
+		
+		<!--<div>
+            <table id="tableimage" width="869px" border="0" cellpadding="0" cellspacing="0" >
+	                <tr>
+		                <td>
+			                <img src="images/forms1.jpg" alt="" /></td>		                
+	                </tr>
+            </table>
+            
+        </div>-->
+        
+    
+      
+</body>
+</html>
